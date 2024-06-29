@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting Widget</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+  }
+  .greeting {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .greeting p {
+    margin: 0;
+    font-size: 1.5em;
+  }
+</style>
+</head>
+<body>
+<div class="greeting">
+  <p id="greeting-text">Hello!</p>
+</div>
+<script>
+  function updateGreeting() {
+    const now = new Date();
+    const gmt2Offset = 2 * 60 * 60 * 1000; // GMT+2 offset in milliseconds
+    const rwandaTime = new Date(now.getTime() + gmt2Offset);
+    const hours = rwandaTime.getUTCHours();
+    let greeting;
+
+    if (hours < 12) {
+      greeting = "Good morning!";
+    } else if (hours < 18) {
+      greeting = "Good afternoon!";
+    } else {
+      greeting = "Good evening!";
+    }
+
+    document.getElementById('greeting-text').innerText = greeting;
+  }
+
+  updateGreeting();
+  setInterval(updateGreeting, 1000 * 60); // Update every minute
+</script>
+</body>
+</html>
